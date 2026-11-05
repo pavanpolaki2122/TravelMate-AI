@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+venv/
+.venv/
+
+# Environment variables (SECRETS - never push!)
+.env
+backend/.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Node
+node_modules/
+
+# Flutter
+travelmate_flutter/.dart_tool/
+travelmate_flutter/.packages
+travelmate_flutter/build/
+travelmate_flutter/.flutter-plugins
+travelmate_flutter/.flutter-plugins-dependencies
+
+# Cloudflare tunnel binary
+cloudflared.exe
+
+# QR code (generated)
+frontend/qr-code.png
+
+# Logs
+*.log

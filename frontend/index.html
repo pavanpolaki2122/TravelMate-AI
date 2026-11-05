@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0A1128">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="/manifest.json">
+  <title>TravelMate AI – Hyderabad Smart Tourism Platform</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Leaflet Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+  <!-- TravelMate Design System -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app-shell" id="appShell">
+
+  <!-- =========== APP HEADER =========== -->
+  <header class="app-header">
+    <div class="brand-wrap" onclick="App.nav('homeScreen')">
+      <div class="brand-logo">TM</div>
+      <div>
+        <div class="brand-name">TravelMate AI</div>
+        <div class="brand-loc">
+          <span class="loc-dot"></span>
+          Hyderabad, Telangana
+        </div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="hbtn" onclick="App.nav('assistantScreen')" title="AI Assistant">💬</button>
+      <button class="hbtn" onclick="App.nav('safetyScreen')" title="Safety SOS" style="color:#F87171;">🚨</button>
+      <button class="hbtn" onclick="App.nav('profileScreen')" title="Profile">👤</button>
+    </div>
+  </header>
+
+  <!-- =========== SYNC BANNER =========== -->
+  <div class="sync-banner">
+    <div class="sync-left">
+      <span class="sync-dot"></span>
+      <span class="sync-text" id="syncText">Live GPS & AI Active</span>
+    </div>
+    <span class="sync-time" id="syncTime">Last Sync: Just now</span>
+  </div>
+
+  <!-- =========== PWA INSTALL BANNER =========== -->
+  <div id="pwaInstallBanner" style="display:none;background:linear-gradient(135deg, #FF6E00, #FF3D00);color:#FFF;padding:8px 14px;align-items:center;justify-content:space-between;box-shadow:0 4px 12px rgba(255,110,0,0.3);z-index:900;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span style="font-size:16px;">📱</span>
+      <span style="font-size:12px;font-weight:800;">Install TravelMate on Phone</span>
+    </div>
+    <div style="display:flex;gap:6px;">
+      <button onclick="triggerPWAInstall()" class="btn btn-xs" style="background:#FFF;color:#FF6E00;font-weight:900;border:none;padding:4px 10px;border-radius:20px;">Install</button>
+      <button onclick="document.getElementById('pwaInstallBanner').style.display='none'" class="btn btn-xs" style="background:transparent;color:rgba(255,255,255,0.8);border:none;padding:4px 6px;">✕</button>
+    </div>
+  </div>
+
+  <!-- =========== SCREEN VIEWPORT =========== -->
+  <div class="screen-wrap">
+
+    <!-- ===== SCREEN 1: SPLASH ===== -->
+    <section id="splashScreen" class="screen active">
+      <div style="height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 24px;background:linear-gradient(160deg,#0A1128 0%,#131E3D 60%,#0A1128 100%);">
+        <div style="margin-bottom:28px;">
+          <div style="width:96px;height:96px;border-radius:28px;background:linear-gradient(135deg,#00E5FF,#0072CE);display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:900;color:#0A1128;box-shadow:0 12px 40px rgba(0,229,255,0.4);margin:0 auto 20px;">TM</div>
+          <h1 style="font-size:30px;font-weight:900;color:#FFFFFF;letter-spacing:-0.5px;">TravelMate AI</h1>
+          <p style="font-size:13px;color:rgba(255,255,255,0.5);margin-top:6px;line-height:1.5;max-width:260px;margin-left:auto;margin-right:auto;">An Advanced AI-Powered Smart Tourist Exploration, Navigation &amp; Travel Assistance Platform</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:14px;width:100%;max-width:300px;margin-top:10px;">
+          <div style="display:flex;gap:12px;justify-content:center;">
+            <div style="text-align:center;"><div style="font-size:22px;margin-bottom:4px;">🤖</div><div style="font-size:10px;color:rgba(255,255,255,0.5);font-weight:700;">AI Planner</div></div>
+            <div style="text-align:center;"><div style="font-size:22px;margin-bottom:4px;">🗺️</div><div style="font-size:10px;color:rgba(255,255,255,0.5);font-weight:700;">Live Maps</div></div>
+            <div style="text-align:center;"><div style="font-size:22px;margin-bottom:4px;">📱</div><div style="font-size:10px;color:rgba(255,255,255,0.5);font-weight:700;">AR Nav</div></div>
+            <div style="text-align:center;"><div style="font-size:22px;margin-bottom:4px;">🔊</div><div style="font-size:10px;color:rgba(255,255,255,0.5);font-weight:700;">Audio Guide</div></div>
+          </div>
+
+          <button onclick="App.nav('homeScreen')" class="btn btn-cyan" style="margin-top:16px;border-radius:999px;font-size:15px;padding:14px;">
+            Begin Exploring →
+          </button>
+          <button onclick="App.nav('authScreen')" class="btn btn-ghost" style="border-radius:999px;color:rgba(255,255,255,0.6);border-color:rgba(255,255,255,0.15);font-size:13px;padding:11px;">
+            Sign In / Register
+          </button>
+        </div>
+
+        <p style="position:absolute;bottom:20px;font-size:10px;color:rgba(255,255,255,0.25);">Powered by Gemini 3.8 Flash AI · Hyderabad, India</p>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 2: AUTH ===== -->
+    <section id="authScreen" class="screen">
+      <div class="screen-content">
+        <!-- Hero -->
+        <div class="hero-dark" style="text-align:center;padding:28px 20px;">
+          <div style="font-size:36px;margin-bottom:10px;">✈️</div>
+          <h2 style="font-size:22px;font-weight:900;color:#FFF;margin-bottom:4px;">Welcome to TravelMate</h2>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);">Save itineraries · Track budget · Offline access</p>
+        </div>
+
+        <!-- Tabs -->
+        <div style="display:flex;gap:4px;background:#F1F5F9;border-radius:14px;padding:4px;margin-bottom:16px;border:1px solid #E2E8F0;">
+          <button id="tabSignIn" onclick="showAuthTab('login')" class="btn btn-sm" style="flex:1;background:linear-gradient(180deg,#FF7B00,#FF5500);color:#FFF;font-weight:800;font-size:13px;cursor:pointer;box-shadow:0 4px 12px rgba(255,110,0,0.35);border:none;border-radius:10px;">Sign In</button>
+          <button id="tabRegister" onclick="showAuthTab('register')" class="btn btn-sm" style="flex:1;background:transparent;color:#64748B;font-weight:700;font-size:13px;cursor:pointer;border:none;border-radius:10px;">Register</button>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginForm" class="card">
+          <form onsubmit="event.preventDefault();AuthModule.login(document.getElementById('liEmail').value,document.getElementById('liPass').value)">
+            <div style="margin-bottom:12px;">
+              <label class="lbl">Email Address</label>
+              <input id="liEmail" type="email" class="inp" value="tourist@travelmate.ai" required>
+            </div>
+            <div style="margin-bottom:16px;">
+              <label class="lbl">Password</label>
+              <input id="liPass" type="password" class="inp" value="demo123" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-bottom:8px;">Sign In to My Account</button>
+            <button type="button" onclick="AuthModule.demoLogin()" class="btn btn-secondary">⚡ Instant Demo Login</button>
+          </form>
+        </div>
+
+        <!-- Register Form -->
+        <div id="registerForm" class="card" style="display:none;">
+          <form onsubmit="event.preventDefault();AuthModule.register(document.getElementById('regName').value,document.getElementById('regEmail').value,document.getElementById('regPass').value)">
+            <div style="margin-bottom:12px;">
+              <label class="lbl">Full Name</label>
+              <input id="regName" type="text" class="inp" placeholder="e.g. Jayasree" required>
+            </div>
+            <div style="margin-bottom:12px;">
+              <label class="lbl">Email Address</label>
+              <input id="regEmail" type="email" class="inp" placeholder="you@example.com" required>
+            </div>
+            <div style="margin-bottom:16px;">
+              <label class="lbl">Password</label>
+              <input id="regPass" type="password" class="inp" placeholder="Min 6 characters" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Travel Account</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 3: HOME DASHBOARD ===== -->
+    <section id="homeScreen" class="screen">
+      <div class="screen-content">
+
+        <!-- City Hero Card -->
+        <div class="hero-dark" style="margin-bottom:16px;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div style="flex:1;">
+              <span class="badge badge-cyan" style="margin-bottom:8px;">● Live Destination Hub</span>
+              <h2 style="font-size:22px;font-weight:900;color:#FFF;letter-spacing:-0.3px;margin-bottom:2px;">Hyderabad<br><span style="color:#00E5FF;">Telangana, India</span></h2>
+              <p id="greetMsg" style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:4px;">City of Pearls &amp; Royal Heritage</p>
+            </div>
+            <div style="text-align:right;flex-shrink:0;">
+              <div style="font-size:28px;font-weight:900;color:#FFF;">☀️ 31°C</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px;">Clear • AQI 68</div>
+              <div style="font-size:10px;color:rgba(0,229,255,0.7);margin-top:4px;font-weight:700;">30+ Attractions</div>
+            </div>
+          </div>
+          <!-- Quick action strip -->
+          <div style="display:flex;gap:8px;margin-top:14px;">
+            <button onclick="App.nav('plannerScreen')" class="btn btn-cyan btn-sm" style="flex:1;border-radius:999px;font-size:11px;padding:8px;">🧭 Plan Trip</button>
+            <button onclick="App.nav('mapScreen')" class="btn btn-sm" style="flex:1;background:rgba(255,255,255,0.12);color:#FFF;border:none;border-radius:999px;font-size:11px;padding:8px;">🗺️ Explore Map</button>
+            <button onclick="App.nav('assistantScreen')" class="btn btn-sm" style="flex:1;background:rgba(255,255,255,0.12);color:#FFF;border:none;border-radius:999px;font-size:11px;padding:8px;">💬 AI Chat</button>
+          </div>
+        </div>
+
+        <!-- 11-Module Quick Grid -->
+        <div class="sec-hd"><span class="sec-title">All Features</span><span class="badge badge-blue">11 Modules</span></div>
+        <div id="moduleGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;"></div>
+
+        <!-- Popular Attractions -->
+        <div class="sec-hd">
+          <span class="sec-title">🏛️ Top Attractions</span>
+          <span class="sec-link" onclick="App.nav('mapScreen')">View Map →</span>
+        </div>
+        <div class="h-scroll" id="featuredHScroll" style="margin-bottom:16px;"></div>
+
+        <!-- Hidden Gems -->
+        <div class="sec-hd">
+          <span class="sec-title">💎 Hidden Gems</span>
+          <span class="sec-link" onclick="App.nav('hiddenScreen')">See All →</span>
+        </div>
+        <div id="hiddenGemsList"></div>
+
+        <!-- Community Activity Teaser -->
+        <div class="sec-hd">
+          <span class="sec-title">👥 Community Feed</span>
+          <span class="sec-link" onclick="App.nav('communityScreen')">Join →</span>
+        </div>
+        <div id="communityPreview"></div>
+
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 4: AI TRIP PLANNER ===== -->
+    <section id="plannerScreen" class="screen">
+      <div class="screen-content">
+
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <div>
+              <h3 style="font-size:18px;font-weight:900;color:var(--text-primary);">AI Trip Planner</h3>
+              <p style="font-size:12px;color:var(--text-muted);">Route-optimized Hyderabad itinerary</p>
+            </div>
+            <span class="badge badge-blue">Module 1</span>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+            <div>
+              <label class="lbl">Trip Duration</label>
+              <select id="planDays" class="sel">
+                <option value="1">1 Day Express</option>
+                <option value="2" selected>2 Days Complete</option>
+                <option value="3">3 Days Leisure</option>
+              </select>
+            </div>
+            <div>
+              <label class="lbl">Budget (₹ INR)</label>
+              <input type="number" id="planBudget" class="inp" value="2000">
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+            <div>
+              <label class="lbl">Start Time</label>
+              <input type="time" id="planStart" class="inp" value="09:00">
+            </div>
+            <div>
+              <label class="lbl">Travel Mode</label>
+              <select id="planMode" class="sel">
+                <option value="Affordable (Metro / Auto)">Metro + Auto (Budget)</option>
+                <option value="Cab / Taxi">Cab / Taxi</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-bottom:14px;">
+            <label class="lbl">Interests &amp; Preferences</label>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;">
+              <label style="display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;cursor:pointer;"><input type="checkbox" class="int-cb" value="Heritage" checked> 🏛️ Heritage</label>
+              <label style="display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;cursor:pointer;"><input type="checkbox" class="int-cb" value="Food" checked> 🍲 Food</label>
+              <label style="display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;cursor:pointer;"><input type="checkbox" class="int-cb" value="Photography" checked> 📸 Photography</label>
+              <label style="display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;cursor:pointer;"><input type="checkbox" class="int-cb" value="Nature"> 🌳 Nature</label>
+              <label style="display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;cursor:pointer;"><input type="checkbox" class="int-cb" value="Shopping"> 🛍️ Shopping</label>
+            </div>
+          </div>
+
+          <div style="margin-bottom:12px;">
+            <label class="lbl">Travel Companions</label>
+            <select id="planCompanion" class="sel">
+              <option value="Solo">Solo Explorer</option>
+              <option value="Couple" selected>Couple</option>
+              <option value="Family">Family with Kids</option>
+              <option value="Group">Group of Friends</option>
+            </select>
+          </div>
+
+          <button onclick="TripPlannerModule.generateTrip()" class="btn btn-primary">
+            ✨ Generate AI Itinerary
+          </button>
+        </div>
+
+        <!-- Results -->
+        <div id="plannerResults"></div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 5: EXPLORE MAP ===== -->
+    <section id="mapScreen" class="screen">
+      <div style="padding:10px 12px 6px;">
+        <div class="chips">
+          <button class="chip active" data-cat="all" onclick="MapModule.filter('all',this)">🌐 All Places</button>
+          <button class="chip" data-cat="attraction" onclick="MapModule.filter('attraction',this)">🏛️ Heritage</button>
+          <button class="chip" data-cat="food" onclick="MapModule.filter('food',this)">🍲 Food</button>
+          <button class="chip" data-cat="hospital" onclick="MapModule.filter('hospital',this)">🏥 Hospitals</button>
+          <button class="chip" data-cat="police" onclick="MapModule.filter('police',this)">👮 Police</button>
+          <button class="chip" data-cat="atm" onclick="MapModule.filter('atm',this)">🏧 ATM</button>
+        </div>
+      </div>
+
+      <div style="padding:0 12px;">
+        <div class="map-box">
+          <div id="mapViewport"></div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+          <button onclick="MapModule.centerOnUser()" class="btn btn-primary btn-sm">🎯 My Location</button>
+          <button onclick="App.nav('nearbyScreen')" class="btn btn-secondary btn-sm">🔍 Nearby Scanner</button>
+        </div>
+
+        <!-- To / From Google Maps Route Finder -->
+        <div class="card" id="routeCard" style="margin-bottom:12px;padding:14px;border:1.5px solid var(--border-color);">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <div style="font-size:14px;font-weight:900;color:var(--text-primary);display:flex;align-items:center;gap:6px;">
+              <span>🧭</span>
+              <span>To / From Route Directions</span>
+            </div>
+            <span class="badge badge-orange" style="font-size:10px;">Google Maps</span>
+          </div>
+
+          <div id="routeInputsArea">
+            <!-- From Origin -->
+            <div style="margin-bottom:8px;">
+              <label class="lbl" style="font-size:11px;font-weight:800;color:var(--text-secondary);display:flex;align-items:center;gap:4px;">
+                <span style="color:#10B981;">🟢</span> FROM (Starting Point)
+              </label>
+              <select id="routeFromSelect" class="sel" onchange="MapModule.onRouteChange()" style="font-size:12px;padding:8px 10px;">
+                <option value="user">📍 My Current Location (Live GPS)</option>
+              </select>
+            </div>
+
+            <!-- Swap Button -->
+            <div style="display:flex;justify-content:center;margin:-4px 0 4px;">
+              <button type="button" onclick="MapModule.swapLocations()" title="Swap Origin and Destination" class="btn btn-xs btn-secondary" style="width:36px;height:26px;border-radius:13px;padding:0;font-size:13px;display:flex;align-items:center;justify-content:center;">
+                ⇅
+              </button>
+            </div>
+
+            <!-- To Destination -->
+            <div style="margin-bottom:10px;">
+              <label class="lbl" style="font-size:11px;font-weight:800;color:var(--text-secondary);display:flex;align-items:center;gap:4px;">
+                <span style="color:#EF4444;">🔴</span> TO (Destination)
+              </label>
+              <select id="routeToSelect" class="sel" onchange="MapModule.onRouteChange()" style="font-size:12px;padding:8px 10px;">
+                <!-- Populated automatically with Hyderabad attractions -->
+              </select>
+            </div>
+
+            <!-- Travel Modes -->
+            <div style="display:flex;gap:6px;margin-bottom:12px;">
+              <button type="button" class="route-mode-btn active" data-mode="DRIVING" onclick="MapModule.setTravelMode('DRIVING',this)">🚗 Drive</button>
+              <button type="button" class="route-mode-btn" data-mode="TRANSIT" onclick="MapModule.setTravelMode('TRANSIT',this)">🚇 Metro</button>
+              <button type="button" class="route-mode-btn" data-mode="WALKING" onclick="MapModule.setTravelMode('WALKING',this)">🚶 Walk</button>
+              <button type="button" class="route-mode-btn" data-mode="TWO_WHEELER" onclick="MapModule.setTravelMode('TWO_WHEELER',this)">🏍️ Bike</button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div style="display:flex;gap:8px;">
+              <button type="button" id="btnCalcRoute" onclick="MapModule.calculateRoute()" class="btn btn-primary btn-sm" style="flex:2;">
+                🗺️ Find Best Route
+              </button>
+              <button type="button" onclick="MapModule.clearRoute()" class="btn btn-secondary btn-sm" style="flex:1;">
+                ✖ Clear
+              </button>
+            </div>
+          </div>
+
+          <!-- Route Results Details -->
+          <div id="routeResultsCard" style="display:none;margin-top:12px;padding-top:12px;border-top:1px dashed var(--border-color);">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+              <div>
+                <span id="routeDistance" style="font-size:18px;font-weight:900;color:var(--orange-primary);margin-right:6px;">-- km</span>
+                <span id="routeDuration" style="font-size:14px;font-weight:800;color:var(--text-primary);">-- mins</span>
+              </div>
+              <span id="routeVia" class="badge badge-orange" style="font-size:10px;">Fastest Route</span>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;">
+              <a id="btnOpenGoogleMaps" href="#" target="_blank" class="btn btn-primary btn-xs" style="text-decoration:none;display:flex;align-items:center;justify-content:center;gap:4px;">
+                🚀 Open in Google Maps
+              </a>
+              <button type="button" onclick="MapModule.toggleSteps()" id="btnToggleSteps" class="btn btn-secondary btn-xs">
+                📜 Turn Directions
+              </button>
+            </div>
+
+            <!-- Step-by-Step Directions Accordion -->
+            <div id="routeStepsList" style="display:none;max-height:180px;overflow-y:auto;background:var(--bg-surface-2);border-radius:var(--radius-sm);padding:8px;font-size:11px;color:var(--text-secondary);line-height:1.5;">
+            </div>
+          </div>
+        </div>
+
+        <!-- Map Info Card -->
+        <div class="card card-sm" id="mapInfoCard" style="display:none;margin-bottom:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <span id="mapInfoName" style="font-size:14px;font-weight:800;color:var(--text-primary);"></span>
+            <span id="mapInfoBadge" class="badge badge-blue"></span>
+          </div>
+          <p id="mapInfoDesc" style="font-size:11px;color:var(--text-secondary);margin-bottom:8px;line-height:1.4;"></p>
+          <div style="display:flex;gap:6px;">
+            <button id="mapInfoRouteBtn" onclick="MapModule.routeToSelected()" class="btn btn-primary btn-xs" style="flex:1;">🧭 Navigate Here</button>
+            <button id="mapInfoARBtn" onclick="MapModule.launchAR()" class="btn btn-secondary btn-xs" style="flex:1;">📱 AR Nav</button>
+            <button id="mapInfoGuideBtn" onclick="MapModule.openGuide()" class="btn btn-secondary btn-xs" style="flex:1;">🎧 Audio Guide</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 6: HIDDEN PLACES ===== -->
+    <section id="hiddenScreen" class="screen">
+      <div class="screen-content">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <div>
+              <h3 style="font-size:18px;font-weight:900;color:var(--text-primary);">Hidden Places</h3>
+              <p style="font-size:12px;color:var(--text-muted);">Unexplored spots beyond tourist trails</p>
+            </div>
+            <button onclick="HiddenGemsModule.openModal()" class="btn btn-primary btn-xs">+ Submit Spot</button>
+          </div>
+        </div>
+
+        <!-- Category Chips -->
+        <div class="chips" style="margin-bottom:12px;">
+          <button class="chip active" onclick="HiddenGemsModule.setFilter('all',this)">🌐 All</button>
+          <button class="chip" onclick="HiddenGemsModule.setFilter('viewpoint',this)">🌄 Viewpoints</button>
+          <button class="chip" onclick="HiddenGemsModule.setFilter('photography',this)">📸 Photo Spots</button>
+          <button class="chip" onclick="HiddenGemsModule.setFilter('heritage',this)">🏛️ Heritage</button>
+          <button class="chip" onclick="HiddenGemsModule.setFilter('food',this)">🍲 Local Food</button>
+        </div>
+
+        <div id="hiddenGemsContainer"></div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 7: AR NAVIGATION ===== -->
+    <section id="arScreen" class="screen">
+      <div style="padding:10px 12px 0;">
+        <div class="ar-box">
+          <video id="arVideo" autoplay playsinline muted></video>
+          <div class="ar-overlay">
+            <!-- Top bar -->
+            <div class="ar-topbar">
+              <div>
+                <span style="font-size:10px;font-weight:800;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:1px;">AR Navigation</span><br>
+                <span id="arBearing" style="font-size:13px;font-weight:800;color:#00E5FF;">045° NE</span>
+              </div>
+              <button onclick="App.nav('mapScreen')" style="background:rgba(0,114,206,0.6);border:1px solid rgba(255,255,255,0.3);color:#FFF;padding:5px 12px;border-radius:999px;font-size:11px;font-weight:800;cursor:pointer;backdrop-filter:blur(8px);">🗺️ 2D Map</button>
+            </div>
+            <!-- Center reticle -->
+            <div class="ar-mid">
+              <div class="ar-reticle">
+                <div class="ar-arrow" id="arArrow">⬆️</div>
+                <div class="ar-dist" id="arDist">120 m</div>
+              </div>
+            </div>
+            <!-- Bottom card -->
+            <div class="ar-bottom">
+              <div class="ar-card">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                  <span id="arPlaceName" style="font-size:14px;font-weight:900;color:#FFF;">Charminar</span>
+                  <span class="badge badge-cyan" style="font-size:9px;">AR Waypoint</span>
+                </div>
+                <p id="arPlaceDesc" style="font-size:11px;color:rgba(255,255,255,0.7);margin-bottom:8px;">Walk towards the main archway. Keep camera forward.</p>
+                <div style="display:flex;gap:6px;">
+                  <button onclick="ARNavigation.openGuide()" style="flex:1;padding:7px;background:#0072CE;border:none;color:#FFF;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;">🎧 Audio Guide</button>
+                  <button onclick="App.nav('mapScreen')" style="flex:1;padding:7px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:#FFF;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;">🗺️ Show Route</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AR Controls -->
+        <div class="card card-sm">
+          <div style="font-size:13px;font-weight:800;color:var(--text-primary);margin-bottom:8px;">AR Navigation Controls</div>
+          <div class="chips" style="margin-bottom:8px;">
+            <button class="chip active" onclick="ARNavigation.setDest('hyd-charminar','Charminar',17.3616,78.4747)">🏛️ Charminar</button>
+            <button class="chip" onclick="ARNavigation.setDest('hyd-golconda','Golconda Fort',17.3833,78.4011)">🏰 Golconda</button>
+            <button class="chip" onclick="ARNavigation.setDest('hyd-salar-jung','Salar Jung Museum',17.3717,78.4804)">🏛️ Salar Jung</button>
+            <button class="chip" onclick="ARNavigation.setDest('hyd-hussain-sagar','Hussain Sagar Lake',17.4239,78.4738)">💧 Hussain Sagar</button>
+          </div>
+          <button onclick="ARNavigation.requestCamera()" class="btn btn-primary btn-sm">📷 Enable AR Camera</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 8: AI TOUR GUIDE ===== -->
+    <section id="guideScreen" class="screen">
+      <div class="screen-content">
+
+        <!-- Monument selector -->
+        <div class="card">
+          <label class="lbl">Select Heritage Monument</label>
+          <select id="monumentSel" class="sel" onchange="TourGuideModule.load(this.value)">
+            <option value="hyd-charminar">🏛️ Charminar (1591 CE)</option>
+            <option value="hyd-golconda">🏰 Golconda Fort &amp; Acoustics</option>
+            <option value="hyd-paigah-tombs">⛩️ Paigah Tombs (Marble Jaali)</option>
+            <option value="hyd-salar-jung">🏛️ Salar Jung Museum</option>
+            <option value="hyd-chowmahalla">🏛️ Chowmahalla Palace</option>
+            <option value="hyd-qutb-shahi-tombs">⛩️ Qutb Shahi Tombs</option>
+            <option value="hyd-hussain-sagar">💧 Hussain Sagar &amp; Buddha</option>
+          </select>
+        </div>
+
+        <!-- Guide player card -->
+        <div class="card" id="guideCard">
+          <img id="guideImg" src="https://images.unsplash.com/photo-1572445271230-a78b5944a659?auto=format&fit=crop&w=800&q=80" style="width:100%;height:170px;object-fit:cover;border-radius:12px;margin-bottom:12px;">
+
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+            <div>
+              <h3 id="guideName" style="font-size:18px;font-weight:900;color:var(--text-primary);">Charminar</h3>
+              <div id="guideMeta" style="font-size:11px;color:var(--text-muted);margin-top:2px;">Built 1591 CE · UNESCO Heritage · Hyderabad</div>
+            </div>
+            <span id="guideFee" class="badge badge-green">Free Entry</span>
+          </div>
+
+          <!-- Language selector -->
+          <div class="lang-row">
+            <button class="lang-btn active" data-lang="en" onclick="TourGuideModule.setLang('en',this)">🇬🇧 English</button>
+            <button class="lang-btn" data-lang="te" onclick="TourGuideModule.setLang('te',this)">🇮🇳 తెలుగు</button>
+            <button class="lang-btn" data-lang="hi" onclick="TourGuideModule.setLang('hi',this)">🇮🇳 हिंदी</button>
+          </div>
+
+          <!-- Audio Controls -->
+          <div class="audio-controls">
+            <button onclick="TourGuideModule.toggleAudio()" id="btnPlay" class="btn-play">▶️</button>
+          </div>
+          <div style="text-align:center;font-size:11px;font-weight:700;color:var(--blue);margin-bottom:12px;">Tap to Listen to the AI Voice Tour</div>
+
+          <!-- Script text -->
+          <div style="background:var(--bg-surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;margin-bottom:12px;">
+            <div style="font-size:10px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Audio Script:</div>
+            <p id="guideScript" style="font-size:12px;color:var(--text-secondary);line-height:1.6;">Loading narration...</p>
+          </div>
+
+          <!-- Facts -->
+          <div style="margin-bottom:14px;">
+            <div style="font-size:11px;font-weight:800;color:var(--amber);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:8px;">📖 Historical Facts</div>
+            <ul id="guideFacts" style="list-style:none;padding:0;display:flex;flex-direction:column;gap:6px;"></ul>
+          </div>
+
+          <!-- Q&A -->
+          <div style="border-top:1px solid var(--border);padding-top:12px;">
+            <label class="lbl">Ask the AI Guide a Question</label>
+            <div style="display:flex;gap:8px;margin-top:6px;">
+              <input type="text" id="guideQ" class="inp" placeholder="e.g. Why are there 4 minarets?" style="flex:1;">
+              <button onclick="TourGuideModule.askQuestion()" class="btn btn-primary btn-sm" style="width:auto;flex-shrink:0;">Ask</button>
+            </div>
+            <div id="guideAnswer" style="display:none;margin-top:10px;padding:12px;background:#EFF6FF;border-left:3px solid var(--blue);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:12px;line-height:1.5;color:#1E3A8A;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 9: NEARBY EXPLORER ===== -->
+    <section id="nearbyScreen" class="screen">
+      <div class="screen-content">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <div>
+              <h3 style="font-size:18px;font-weight:900;color:var(--text-primary);">Nearby Explorer</h3>
+              <p style="font-size:12px;color:var(--text-muted);">Live GPS distance-sorted results</p>
+            </div>
+            <span class="badge badge-blue">Module 5</span>
+          </div>
+
+          <!-- Radius slider -->
+          <div style="margin-bottom:14px;">
+            <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-bottom:6px;">
+              <span style="color:var(--text-secondary);">Search Radius:</span>
+              <span id="radiusLabel" style="color:var(--blue);">20 km</span>
+            </div>
+            <input type="range" id="radiusSlider" min="1" max="30" value="20" oninput="NearbyExplorer.setRadius(this.value)" style="width:100%;accent-color:var(--blue);">
+          </div>
+
+          <!-- Category chips -->
+          <div class="chips">
+            <button class="chip active" onclick="NearbyExplorer.setCategory('all',this)">🌐 All</button>
+            <button class="chip" onclick="NearbyExplorer.setCategory('attraction',this)">🏛️ Attractions</button>
+            <button class="chip" onclick="NearbyExplorer.setCategory('food',this)">🍲 Restaurants</button>
+            <button class="chip" onclick="NearbyExplorer.setCategory('hospital',this)">🏥 Hospitals</button>
+            <button class="chip" onclick="NearbyExplorer.setCategory('police',this)">👮 Police</button>
+            <button class="chip" onclick="NearbyExplorer.setCategory('atm',this)">🏧 ATMs</button>
+          </div>
+        </div>
+
+        <div id="nearbyResults"></div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 10: BUDGET CALCULATOR ===== -->
+    <section id="budgetScreen" class="screen">
+      <div class="screen-content">
+
+        <!-- Budget Overview Card -->
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <div>
+              <h3 style="font-size:18px;font-weight:900;color:var(--text-primary);">Budget Calculator</h3>
+              <p style="font-size:12px;color:var(--text-muted);">Track spending against your travel budget</p>
+            </div>
+            <span class="badge badge-blue">Module 6</span>
+          </div>
+
+          <div style="margin-bottom:14px;">
+            <label class="lbl">Total Travel Budget (₹ INR)</label>
+            <input type="number" id="budgetLimit" class="inp" value="2000" oninput="BudgetCalculator.setBudget(this.value)">
+          </div>
+
+          <!-- Stats -->
+          <div class="stat-row">
+            <div class="stat-box">
+              <div class="stat-val" id="bSpent" style="color:var(--blue);">₹0</div>
+              <div class="stat-lbl">Spent</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" id="bRemain" style="color:var(--green);">₹2000</div>
+              <div class="stat-lbl">Remaining</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" id="bPct" style="color:var(--amber);">0%</div>
+              <div class="stat-lbl">Used</div>
+            </div>
+          </div>
+
+          <!-- Progress bar -->
+          <div class="prog-track" style="margin-bottom:10px;">
+            <div class="prog-fill" id="budgetBar" style="width:0%;"></div>
+          </div>
+
+          <!-- Alert -->
+          <div id="budgetAlert" style="display:none;" class="card card-sm" style="margin-top:0;"></div>
+        </div>
+
+        <!-- Add Expense -->
+        <div class="card">
+          <div style="font-size:14px;font-weight:800;color:var(--text-primary);margin-bottom:10px;">+ Log Expense</div>
+          <div style="display:grid;grid-template-columns:2fr 1fr;gap:8px;margin-bottom:8px;">
+            <input type="text" id="expTitle" class="inp" placeholder="e.g. Biryani at Shadab">
+            <input type="number" id="expAmount" class="inp" placeholder="₹">
+          </div>
+          <div style="display:grid;grid-template-columns:2fr 1fr;gap:8px;">
+            <select id="expCat" class="sel">
+              <option value="food">🍲 Food &amp; Chai</option>
+              <option value="transit">🚇 Transit (Metro/Auto)</option>
+              <option value="entry">🎟️ Entry Tickets</option>
+              <option value="stay">🏨 Hotel Stay</option>
+              <option value="shopping">🛍️ Shopping</option>
+              <option value="misc">📦 Miscellaneous</option>
+            </select>
+            <button onclick="BudgetCalculator.addExpense()" class="btn btn-primary btn-sm">Add</button>
+          </div>
+        </div>
+
+        <!-- Expense List -->
+        <div class="card">
+          <div style="font-size:14px;font-weight:800;color:var(--text-primary);margin-bottom:10px;">💳 All Expenses</div>
+          <div id="expenseList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 11: LIVE ASSISTANT ===== -->
+    <section id="assistantScreen" class="screen">
+      <div class="chat-wrap" style="height:100%;position:absolute;inset:0;">
+
+        <!-- Chat header -->
+        <div style="padding:12px 14px 10px;background:var(--bg-surface);border-bottom:1px solid var(--border);flex-shrink:0;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#0072CE,#00E5FF);display:flex;align-items:center;justify-content:center;font-size:17px;">🤖</div>
+            <div>
+              <div style="font-size:14px;font-weight:800;color:var(--text-primary);">TravelMate AI Assistant</div>
+              <div style="font-size:11px;color:var(--green);font-weight:700;">● Online · Gemini 3.8 Flash</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Messages -->
+        <div class="chat-msgs" id="chatMsgs">
+          <div class="msg msg-ai">
+            <div class="msg-bubble">
+              Hello! I'm your <b>TravelMate AI</b> powered by Gemini 3.8 Flash. 🙏<br><br>
+              I can help you plan your Hyderabad trip, find food, explain monuments, and answer any travel question. What would you like to know?
+            </div>
+            <div class="msg-time">Just now</div>
+          </div>
+        </div>
+
+        <!-- Quick suggestions -->
+        <div class="chat-suggestions">
+          <button class="sug-chip" onclick="LiveAssistant.send('Best places for Hyderabadi Dum Biryani near Charminar?')">🍲 Best Biryani</button>
+          <button class="sug-chip" onclick="LiveAssistant.send('Top hidden photography spots in Hyderabad?')">📸 Photo Spots</button>
+          <button class="sug-chip" onclick="LiveAssistant.send('Budget 3-hour evening tour near Hussain Sagar?')">🌇 Evening Plan</button>
+          <button class="sug-chip" onclick="LiveAssistant.send('Is Golconda Fort open today and what are the timings?')">⏰ Open Hours</button>
+          <button class="sug-chip" onclick="LiveAssistant.send('Cheapest way to travel around Hyderabad Old City?')">🚇 Budget Travel</button>
+        </div>
+
+        <!-- Input -->
+        <div class="chat-input-row">
+          <button class="chat-mic-btn" id="micBtn" onclick="LiveAssistant.toggleVoice()" title="Voice Input">🎙️</button>
+          <input type="text" class="chat-inp" id="chatInput" placeholder="Ask your travel question..." onkeydown="if(event.key==='Enter')LiveAssistant.send()">
+          <button class="chat-send-btn" onclick="LiveAssistant.send()">➤</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 12: OFFLINE DASHBOARD ===== -->
+    <section id="offlineScreen" class="screen">
+      <div class="screen-content">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <div>
+              <h3 style="font-size:18px;font-weight:900;color:var(--text-primary);">Offline Dashboard</h3>
+              <p style="font-size:12px;color:var(--text-muted);">Access without internet connection</p>
+            </div>
+            <span class="badge badge-blue">Module 8</span>
+          </div>
+
+          <!-- Status -->
+          <div style="display:flex;align-items:center;gap:10px;padding:12px;background:var(--green-light);border-radius:var(--radius-md);margin-bottom:12px;">
+            <span style="font-size:22px;">📦</span>
+            <div>
+              <div style="font-size:13px;font-weight:800;color:#065F46;" id="offlinePackStatus">Hyderabad Pack: Downloaded</div>
+              <div style="font-size:11px;color:#059669;" id="offlinePlacesCount">20 attractions cached · Last synced: today</div>
+            </div>
+          </div>
+
+          <button onclick="OfflineManager.downloadPack()" class="btn btn-primary" style="margin-bottom:10px;">📥 Update City Pack</button>
+          <div id="downloadProgress" style="display:none;">
+            <div class="prog-track"><div class="prog-fill" id="dlBar" style="width:0%;"></div></div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:4px;text-align:center;" id="dlLabel">Downloading...</div>
+          </div>
+        </div>
+
+        <!-- Offline Content -->
+        <div class="card">
+          <div style="font-size:14px;font-weight:800;color:var(--text-primary);margin-bottom:12px;">📲 Saved Offline Content</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--bg-surface-2);border-radius:var(--radius-sm);">
+              <span style="font-size:20px;">🗺️</span>
+              <div style="flex:1;"><div style="font-size:13px;font-weight:700;">Hyderabad City Map</div><div style="font-size:11px;color:var(--text-muted);">Full offline vector map</div></div>
+              <span class="badge badge-green">Ready</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--bg-surface-2);border-radius:var(--radius-sm);">
+              <span style="font-size:20px;">🏛️</span>
+              <div style="flex:1;"><div style="font-size:13px;font-weight:700;">30+ Heritage Guides</div><div style="font-size:11px;color:var(--text-muted);">Audio scripts + facts</div></div>
+              <span class="badge badge-green">Ready</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--bg-surface-2);border-radius:var(--radius-sm);">
+              <span style="font-size:20px;">🚨</span>
+              <div style="flex:1;"><div style="font-size:13px;font-weight:700;">Emergency Contacts</div><div style="font-size:11px;color:var(--text-muted);">Police · Hospital · Helplines</div></div>
+              <span class="badge badge-green">Ready</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Emergency Numbers -->
+        <div class="card">
+          <div style="font-size:14px;font-weight:800;color:var(--text-primary);margin-bottom:12px;">📞 Offline Emergency Guide</div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+            <div style="display:flex;justify-content:space-between;padding:8px 12px;background:#FEF2F2;border-radius:8px;">
+              <span style="font-weight:700;color:#991B1B;">🆘 National Emergency</span>
+              <a href="tel:112" style="font-weight:900;color:var(--red);text-decoration:none;">112</a>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 12px;background:var(--bg-surface-2);border-radius:8px;">
+              <span style="font-weight:700;">👮 Police</span>
+              <a href="tel:100" style="font-weight:900;color:var(--blue);text-decoration:none;">100</a>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 12px;background:var(--bg-surface-2);border-radius:8px;">
+              <span style="font-weight:700;">🚑 Ambulance</span>
+              <a href="tel:108" style="font-weight:900;color:var(--green);text-decoration:none;">108</a>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 12px;background:var(--bg-surface-2);border-radius:8px;">
+              <span style="font-weight:700;">🏨 Tourist Helpline</span>
+              <a href="tel:1363" style="font-weight:900;color:var(--blue);text-decoration:none;">1363</a>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 12px;background:var(--bg-surface-2);border-radius:8px;">
+              <span style="font-weight:700;">🛡️ SHE Teams (Women)</span>
+              <a href="tel:9490617444" style="font-weight:900;color:var(--purple);text-decoration:none;">9490617444</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 13: TOURIST SAFETY ===== -->
+    <section id="safetyScreen" class="screen">
+      <div class="screen-content">
+
+        <!-- Main SOS Card -->
+        <div class="card" style="border:2px solid #FCA5A5;background:#FFF5F5;text-align:center;padding:28px 20px;margin-bottom:14px;">
+          <span class="badge badge-red" style="margin-bottom:12px;padding:5px 12px;">⚠️ Emergency Response System</span>
+          <h2 style="font-size:20px;font-weight:900;color:#991B1B;margin-bottom:6px;">Tourist Safety SOS</h2>
+          <p style="font-size:12px;color:#B91C1C;margin-bottom:20px;">One-tap emergency broadcast with live GPS + WhatsApp alert</p>
+          <button onclick="SafetySystem.triggerSOS()" class="sos-pulse-btn" style="margin-bottom:0;">
+            <span class="sos-emoji">🚨</span>
+            <span>EMERGENCY<br>SOS</span>
+          </button>
+          <p style="font-size:10px;color:#B91C1C;margin-top:14px;font-weight:700;">Tap the button to activate emergency alert</p>
+        </div>
+
+        <!-- Quick Dial -->
+        <div class="card">
+          <div style="font-size:14px;font-weight:800;color:var(--text-primary);margin-bottom:10px;">📞 Speed Dial Emergency</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <a href="tel:112" class="btn btn-danger btn-sm" style="text-decoration:none;">📞 112 National</a>
+            <a href="tel:100" class="btn btn-secondary btn-sm" style="text-decoration:none;">👮 100 Police</a>
+            <a href="tel:108" class="btn btn-secondary btn-sm" style="text-decoration:none;">🚑 108 Ambulance</a>
+            <a href="tel:1091" class="btn btn-secondary btn-sm" style="text-decoration:none;">🛡️ 1091 Women</a>
+          </div>
+        </div>
+
+        <!-- Nearby Emergency Services -->
+        <div class="card">
+          <div style="font-size:14px;font-weight:800;color:var(--text-primary);margin-bottom:10px;">📍 Nearest Emergency Services</div>
+          <div id="safetyNearby"></div>
+        </div>
+
+        <!-- Share Location -->
+        <div class="card">
+          <div style="font-size:14px;font-weight:800;color:var(--text-primary);margin-bottom:8px;">📲 Share Live Location</div>
+          <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">Send your GPS location to trusted contacts via WhatsApp</p>
+          <button onclick="SafetySystem.shareLiveLocation()" class="btn btn-primary btn-sm" style="background:#25D366;">📲 Share via WhatsApp</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 14: COMMUNITY ===== -->
+    <section id="communityScreen" class="screen">
+      <div class="screen-content">
+
+        <!-- Post area -->
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <div>
+              <h3 style="font-size:18px;font-weight:900;color:var(--text-primary);">Tourist Community</h3>
+              <p style="font-size:12px;color:var(--text-muted);">Share tips, hidden spots &amp; experiences</p>
+            </div>
+            <span class="badge badge-blue">Module 10</span>
+          </div>
+          <input type="text" id="postLocation" class="inp" placeholder="📍 Location (e.g. Moula Ali Hilltop)" style="margin-bottom:8px;">
+          <textarea id="postContent" class="tex" rows="3" placeholder="Share your Hyderabad experience, food tips, or photography secrets..."></textarea>
+          <button onclick="CommunityModule.submitPost()" class="btn btn-primary" style="margin-top:8px;">✍️ Share Experience</button>
+        </div>
+
+        <!-- Travel Buddies -->
+        <div class="sec-hd">
+          <span class="sec-title">🤝 Travel Buddies Nearby</span>
+          <span class="sec-link" onclick="CommunityModule.loadBuddies()">Refresh</span>
+        </div>
+        <div class="h-scroll" id="buddyScroll" style="margin-bottom:16px;"></div>
+
+        <!-- Community Feed -->
+        <div class="sec-hd"><span class="sec-title">📸 Community Stories</span></div>
+        <div id="communityFeed"></div>
+
+      </div>
+    </section>
+
+    <!-- ===== SCREEN 15: PROFILE & SETTINGS ===== -->
+    <section id="profileScreen" class="screen">
+      <div class="screen-content">
+
+        <!-- Profile Hero -->
+        <div class="card" style="text-align:center;padding:28px 20px;">
+          <div class="profile-avatar" id="avatarEl">JT</div>
+          <h3 id="pName" style="font-size:19px;font-weight:900;color:var(--text-primary);margin-bottom:4px;">Jayasree Tourist</h3>
+          <div id="pEmail" style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">tourist@travelmate.ai</div>
+          <span id="pBadge" class="badge badge-green" style="padding:4px 12px;">✅ Verified Explorer</span>
+        </div>
+
+        <!-- Stats -->
+        <div class="stat-row">
+          <div class="stat-box"><div class="stat-val" style="color:var(--blue);">8</div><div class="stat-lbl">Trips</div></div>
+          <div class="stat-box"><div class="stat-val" style="color:var(--amber);">23</div><div class="stat-lbl">Places</div></div>
+          <div class="stat-box"><div class="stat-val" style="color:var(--green);">5</div><div class="stat-lbl">Reviews</div></div>
+        </div>
+
+        <!-- Settings -->
+        <div class="card">
+          <div style="font-size:14px;font-weight:800;color:var(--text-primary);margin-bottom:12px;">⚙️ Travel Preferences</div>
+          <div style="margin-bottom:12px;">
+            <label class="lbl">Full Name</label>
+            <input type="text" id="settName" class="inp" value="Jayasree Tourist">
+          </div>
+          <div style="margin-bottom:12px;">
+            <label class="lbl">Audio Guide Language</label>
+            <select id="settLang" class="sel">
+              <option value="en">🇬🇧 English</option>
+              <option value="te">🇮🇳 తెలుగు (Telugu)</option>
+              <option value="hi">🇮🇳 हिंदी (Hindi)</option>
+            </select>
+          </div>
+          <div style="margin-bottom:16px;">
+            <label class="lbl">Travel Style</label>
+            <select id="settStyle" class="sel">
+              <option value="Budget">Budget Explorer (Metro + Heritage)</option>
+              <option value="Comfort">Comfort Traveller (Cabs + Dining)</option>
+              <option value="Luxury">Luxury (Palaces + Fine Dining)</option>
+            </select>
+          </div>
+          <button id="btnSavePref" onclick="AuthModule.saveProfile()" class="btn btn-primary" style="margin-bottom:8px;">💾 Save Preferences</button>
+          <button id="btnLogout" onclick="AuthModule.logout()" class="btn btn-danger" style="margin-bottom:8px;">🚪 Sign Out / Logout</button>
+          <button id="btnSwitchAuth" onclick="App.nav('authScreen')" class="btn btn-secondary">🔑 Switch / Register Account</button>
+        </div>
+
+        <!-- App Info -->
+        <div class="card">
+          <div style="font-size:14px;font-weight:800;color:var(--text-primary);margin-bottom:10px;">ℹ️ About TravelMate AI</div>
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.6;">
+            <div>Version 1.0.0 · Hyderabad Edition</div>
+            <div>Powered by Gemini 3.8 Flash AI</div>
+            <div style="margin-top:6px;padding:8px;background:var(--bg-surface-2);border-radius:var(--radius-sm);">
+              Maps: OpenStreetMap · CartoDB Voyager<br>
+              Backend: Python FastAPI + SQLite<br>
+              Frontend: Responsive PWA (HTML5)
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div><!-- .screen-wrap -->
+
+  <!-- =========== BOTTOM NAVIGATION =========== -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-s="homeScreen">
+      <span class="nav-btn-icon">🏠</span>
+      <span class="nav-btn-label">Home</span>
+    </button>
+    <button class="nav-btn" data-s="plannerScreen">
+      <span class="nav-btn-icon">🧭</span>
+      <span class="nav-btn-label">Planner</span>
+    </button>
+    <button class="nav-btn" data-s="mapScreen">
+      <span class="nav-btn-icon">🗺️</span>
+      <span class="nav-btn-label">Map</span>
+    </button>
+    <button class="nav-btn" data-s="arScreen">
+      <span class="nav-btn-icon">📱</span>
+      <span class="nav-btn-label">AR Nav</span>
+    </button>
+    <button class="nav-btn" data-s="communityScreen">
+      <span class="nav-btn-icon">👥</span>
+      <span class="nav-btn-label">Social</span>
+    </button>
+  </nav>
+
+  <!-- SOS FAB -->
+  <button class="sos-fab" onclick="SafetySystem.triggerSOS()" title="Emergency SOS">🚨<span style="font-size:9px;letter-spacing:0.5px;">SOS</span></button>
+
+</div><!-- .app-shell -->
+
+<!-- =========== MODAL: SOS =========== -->
+<div class="modal-bg" id="sosModal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div style="text-align:center;margin-bottom:16px;">
+      <div style="font-size:50px;margin-bottom:8px;">🚨</div>
+      <h2 style="font-size:20px;font-weight:900;color:#DC2626;margin-bottom:4px;">SOS EMERGENCY ACTIVE</h2>
+      <div style="font-size:11px;color:var(--text-muted);">Siren sounding · Live GPS generated</div>
+    </div>
+    <div style="background:var(--bg-surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;margin-bottom:14px;">
+      <div style="font-size:10px;font-weight:800;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;">BROADCAST MESSAGE:</div>
+      <div id="sosPreview" style="font-size:12px;color:var(--text-primary);line-height:1.4;word-break:break-all;">🚨 EMERGENCY! Tourist needs help. Live GPS: loading...</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
+      <a id="sosWA" href="#" target="_blank" class="btn" style="background:#25D366;color:#FFF;text-decoration:none;">📲 Send WhatsApp SOS</a>
+      <a id="sosSMS" href="#" class="btn btn-secondary" style="text-decoration:none;">✉️ Send SMS Alert</a>
+      <a href="tel:112" class="btn btn-danger" style="text-decoration:none;">📞 Call Emergency: 112</a>
+    </div>
+    <button onclick="SafetySystem.closeSOS()" class="btn btn-secondary">🔇 Silence &amp; Dismiss</button>
+  </div>
+</div>
+
+<!-- =========== MODAL: DELAY RECALCULATOR =========== -->
+<div class="modal-bg" id="delayModal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <h2 class="modal-title">⏱️ Running Late?</h2>
+    <p class="modal-sub">Select your delay amount. TravelMate AI will recalculate the remaining itinerary and check monument closing hours.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+      <button onclick="TripPlannerModule.applyDelay(30)" class="btn btn-secondary">+30 Minutes</button>
+      <button onclick="TripPlannerModule.applyDelay(60)" class="btn btn-secondary">+60 Minutes</button>
+      <button onclick="TripPlannerModule.applyDelay(90)" class="btn btn-primary">+90 Minutes</button>
+      <button onclick="TripPlannerModule.applyDelay(120)" class="btn btn-secondary">+2 Hours</button>
+    </div>
+    <button onclick="TripPlannerModule.closeDelayModal()" class="btn btn-secondary">Cancel</button>
+  </div>
+</div>
+
+<!-- =========== MODAL: SUBMIT HIDDEN GEM =========== -->
+<div class="modal-bg" id="gemModal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <h2 class="modal-title">💎 Submit Hidden Attraction</h2>
+    <p class="modal-sub">Help tourists discover unexplored Hyderabad spots, secret sunset points, and local gems.</p>
+    <div style="margin-bottom:10px;">
+      <label class="lbl">Attraction Name</label>
+      <input type="text" id="gemName" class="inp" placeholder="e.g. Moula Ali Secret Viewpoint">
+    </div>
+    <div style="margin-bottom:10px;">
+      <label class="lbl">Description &amp; Why it's special</label>
+      <textarea id="gemDesc" class="tex" rows="3" placeholder="Best visiting time, historical trivia, photo angles..."></textarea>
+    </div>
+    <div style="margin-bottom:14px;">
+      <label class="lbl">Photo URL (Optional)</label>
+      <input type="url" id="gemPhoto" class="inp" placeholder="https://example.com/photo.jpg">
+    </div>
+    <div style="display:flex;gap:8px;">
+      <button onclick="HiddenGemsModule.submitPlace()" class="btn btn-primary" style="flex:2;">Submit to Community</button>
+      <button onclick="HiddenGemsModule.closeModal()" class="btn btn-secondary" style="flex:1;">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- =========== SCRIPTS =========== -->
+<!-- Google Maps Platform JavaScript API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMOnwjKd5927AA6hAEWqKDGM2SKxOlwVs&libraries=places,marker,geometry&v=weekly"></script>
+<!-- Leaflet Fallback Map -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/offline_manager.js"></script>
+<script src="js/map.js"></script>
+<script src="js/ar_navigation.js"></script>
+<script src="js/tour_guide.js"></script>
+<script src="js/trip_planner.js"></script>
+<script src="js/budget_calc.js"></script>
+<script src="js/nearby_explorer.js"></script>
+<script src="js/hidden_gems.js"></script>
+<script src="js/live_assistant.js"></script>
+<script src="js/safety_system.js"></script>
+<script src="js/community.js"></script>
+<script src="js/app.js"></script>
+
+<script>
+// Auth tab toggle
+function showAuthTab(tab) {
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+  const tabSignIn = document.getElementById('tabSignIn');
+  const tabRegister = document.getElementById('tabRegister');
+  if (tab === 'login') {
+    loginForm.style.display = 'block';
+    registerForm.style.display = 'none';
+    tabSignIn.style.background = 'linear-gradient(180deg, #FF7B00, #FF5500)';
+    tabSignIn.style.color = '#FFF';
+    tabSignIn.style.boxShadow = '0 4px 12px rgba(255,110,0,0.35)';
+    tabRegister.style.background = 'transparent';
+    tabRegister.style.color = '#64748B';
+    tabRegister.style.boxShadow = 'none';
+  } else {
+    loginForm.style.display = 'none';
+    registerForm.style.display = 'block';
+    tabRegister.style.background = 'linear-gradient(180deg, #FF7B00, #FF5500)';
+    tabRegister.style.color = '#FFF';
+    tabRegister.style.boxShadow = '0 4px 12px rgba(255,110,0,0.35)';
+    tabSignIn.style.background = 'transparent';
+    tabSignIn.style.color = '#64748B';
+    tabSignIn.style.boxShadow = 'none';
+  }
+}
+
+// Register Service Worker for PWA / WebAPK Installation
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('[TravelMate] Service Worker registered:', reg.scope))
+      .catch(err => console.warn('[TravelMate] Service Worker error:', err));
+  });
+}
+
+// Native PWA Install Banner Listener
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  console.log('[TravelMate] PWA Install prompt captured');
+  const installBanner = document.getElementById('pwaInstallBanner');
+  if (installBanner) installBanner.style.display = 'flex';
+});
+
+function triggerPWAInstall() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choice) => {
+      if (choice.outcome === 'accepted') {
+        console.log('[TravelMate] User accepted the install prompt');
+        App.toast("Installing TravelMate AI... 🚀", "success");
+      }
+      deferredPrompt = null;
+    });
+  } else {
+    App.toast('Tap the 3 dots (⋮) in Chrome & select "Install App"', 'default');
+  }
+}
+</script>
+
+</body>
+</html>

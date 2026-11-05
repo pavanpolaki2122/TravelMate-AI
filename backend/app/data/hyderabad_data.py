@@ -1,0 +1,608 @@
+"""
+TravelMate AI - Hyderabad Curated Dataset
+Verified locations across heritage, hidden gems, food, hospitals, police, and transit.
+"""
+
+HYDERABAD_PLACES = [
+    {
+        "id": "hyd-charminar",
+        "name": "Charminar",
+        "category": "attraction",
+        "sub_category": "monument",
+        "lat": 17.3616,
+        "lng": 78.4747,
+        "address": "Char Kaman, Ghansi Bazaar, Hyderabad, Telangana 500002",
+        "description": "Constructed in 1591 CE by Muhammad Quli Qutb Shah, the fifth ruler of the Qutb Shahi dynasty, Charminar is a global icon of Hyderabad. The landmark stands at the intersection of historical trade routes with four majestic minarets rising 48.7 meters.",
+        "short_desc": "Global symbol of Hyderabad with 4 iconic 48.7m minarets built in 1591.",
+        "entry_fee_inr": 25,
+        "timings": "09:30 AM - 05:30 PM",
+        "open_time_24h": "09:30",
+        "close_time_24h": "17:30",
+        "avg_duration_minutes": 60,
+        "is_hidden_gem": False,
+        "rating": 4.6,
+        "reviews_count": 89400,
+        "tags": ["Heritage", "Photography", "Architecture", "Budget"],
+        "audio_guide": {
+            "en": "Welcome to Charminar, the heart and soul of Hyderabad. Built in 1591 by Sultan Muhammad Quli Qutb Shah to commemorate the eradication of a devastating plague, this Indo-Islamic masterpiece features four grand arches and four 48-meter minarets. Each minaret has four storeys, marked by a carved ring. Notice the ornate stucco decorations and the oldest existing mosque in Hyderabad located on the second floor.",
+            "te": "హైదరాబాద్ యొక్క చారిత్రక చిహ్నం చార్మినార్ కు స్వాగతం. 1591 లో ఐదవ కుతుబ్ షాహీ పాలకుడు ముహమ్మద్ కులీ కుతుబ్ షా ప్లేగు వ్యాధి నిర్మూలనకు గుర్తుగా దీనిని నిర్మించారు. ఈ అద్భుత కట్టడానికి నాలుగు వైపులా నాలుగు ఎత్తైన మినార్లు ఉన్నాయి. ప్రతి మినార్ 48.7 మీటర్ల ఎత్తు కలిగి ఉంటుంది.",
+            "hi": "चारमीनार में आपका स्वागत है, जो हैदराबाद की ऐतिहासिक पहचान है। इसे 1591 में सुल्तान मुहम्मद कुली कुतुब शाह ने प्लेग महामारी की समाप्ति की खुशी में बनवाया था। इसके चार भव्य मेहराब और 48.7 मीटर ऊंचे चार मीनारें इंडो-इस्लामी वास्तुकला का अनुपम उदाहरण हैं।"
+        },
+        "quick_facts": [
+            "Built with granite, limestone, and pulverized marble.",
+            "Features the oldest mosque in Hyderabad on its top floor.",
+            "Surrounded by the bustling Laad Bazaar famous for lacquer bangles."
+        ],
+        "image_url": "https://images.unsplash.com/photo-1572445271230-a78b5944a659?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "hyd-golconda",
+        "name": "Golconda Fort",
+        "category": "attraction",
+        "sub_category": "fort",
+        "lat": 17.3833,
+        "lng": 78.4011,
+        "address": "Khair Complex, Ibrahim Bagh, Hyderabad, Telangana 500008",
+        "description": "Golconda Fort was the principal capital of the Qutb Shahi kings. Renowned worldwide for producing legendary diamonds including the Koh-i-Noor, Hope Diamond, and Daria-i-Noor, it features an ingenious acoustic signalling system where a clap at the Fateh Darwaza can be heard 1 km away at the Bala Hissar pavilion.",
+        "short_desc": "Legendary medieval fort famous for acoustics, diamond vaults, and sunset panoramas.",
+        "entry_fee_inr": 25,
+        "timings": "09:00 AM - 05:30 PM",
+        "open_time_24h": "09:00",
+        "close_time_24h": "17:30",
+        "avg_duration_minutes": 150,
+        "is_hidden_gem": False,
+        "rating": 4.7,
+        "reviews_count": 94200,
+        "tags": ["Heritage", "Architecture", "Panoramic View", "History"],
+        "audio_guide": {
+            "en": "You are standing before the mighty Golconda Fort. Originally built as a mud fort by the Kakatiyas in the 11th century, it was expanded into a massive stone citadel by the Qutb Shahis. Try clapping your hands at the central portico of Fateh Darwaza; the sound travels 1 kilometer up to the Bala Hissar pavilion, designed as an acoustic military warning system.",
+            "te": "గోల్కొండ కోటకు స్వాగతం. 11వ శతాబ్దంలో కాకతీయులు మట్టి కోటగా నిర్మించిన దీనిని కుతుబ్ షాహీలు అభేద్యమైన రాతి కోటగా తీర్చిదిద్దారు. ఫతే దర్వాజా వద్ద చప్పట్లు కొడితే ఆ శబ్దం దాదాపు ఒక కిలోమీటరు ఎత్తులోని బాలా హిస్సార్ మండపం వరకు ప్రతిధ్వనిస్తుంది.",
+            "hi": "गोलकोंडा किले में आपका स्वागत है। 11वीं सदी में काकतीय वंश द्वारा मिट्टी से बना यह किला कुतुब शाही काल में एक अभेद्य दुर्ग बना। फतेह दरवाजा पर ताली बजाने की आवाज 1 किलोमीटर ऊपर स्थित बाला हिसार मंडप तक स्पष्ट सुनाई देती है।"
+        },
+        "quick_facts": [
+            "Source of world-famous diamonds like the Koh-i-Noor and Hope Diamond.",
+            "Remarkable acoustic architecture designed for military surveillance.",
+            "Evening Sound & Light show narrating the story of the kingdom."
+        ],
+        "image_url": "https://images.unsplash.com/photo-1605649487212-47bdab064df8?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "hyd-paigah-tombs",
+        "name": "Paigah Tombs",
+        "category": "attraction",
+        "sub_category": "hidden_gem",
+        "lat": 17.3444,
+        "lng": 78.5042,
+        "address": "Santosh Nagar, Kanchan Bagh, Hyderabad, Telangana 500059",
+        "description": "One of Hyderabad's best-kept secrets, the Paigah Tombs represent the final resting place of the noble Paigah family. Built with intricate marble latticework (jaali), stucco craftsmanship, and a unique synthesis of Asaf Jahi, Rajputana, Persian, and European architecture.",
+        "short_desc": "Exquisite hidden architectural masterpiece with delicate marble latticework.",
+        "entry_fee_inr": 0,
+        "timings": "10:00 AM - 05:00 PM",
+        "open_time_24h": "10:00",
+        "close_time_24h": "17:00",
+        "avg_duration_minutes": 60,
+        "is_hidden_gem": True,
+        "rating": 4.5,
+        "reviews_count": 4800,
+        "tags": ["Hidden Gem", "Photography", "Tranquil", "Architecture", "Budget"],
+        "audio_guide": {
+            "en": "Welcome to the serene Paigah Tombs, an aristocratic secret tucked away from tourist crowds. The Paigahs were fierce loyalists and matrimonial allies of the Nizams. Examine the geometric carved marble screens; no two screens in this complex share the identical geometric pattern. The stucco inlay work took decades of patient artisanal devotion.",
+            "te": "పైగా సమాధుల అద్భుత లోకానికి స్వాగతం. నిజాం నవాబులకు అత్యంత ఆప్తులైన పైగా ఉన్నత వంశీకుల విశ్రాంతి స్థలమిది. పాలరాతిపై చెక్కిన అద్భుతమైన జాలీ పనితనం, పర్షియన్, మొఘల్ మరియు యూరోపియన్ శైలుల కలయిక ఇక్కడ కనిపిస్తుంది.",
+            "hi": "पैगाह मकबरों में आपका स्वागत है। यह शांत ऐतिहासिक स्थल पैगाह शाही परिवार का कब्रिस्तान है। संगमरमर की बारीक जालीदार नक्काशी और चूने का काम यहां की मुख्य विशेषता है। हर जाली की बनावट एक-दूसरे से पूरी तरह अलग है।"
+        },
+        "quick_facts": [
+            "Free entry for all tourists.",
+            "Geometric jaali screens where every window pattern is unique.",
+            "Rare blend of Mughal, Greek, Persian, and Asaf Jahi architectural styles."
+        ],
+        "image_url": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "hyd-moula-ali-hill",
+        "name": "Moula Ali Dargah & Sunset Hilltop",
+        "category": "attraction",
+        "sub_category": "hidden_gem",
+        "lat": 17.4667,
+        "lng": 78.5667,
+        "address": "Moula Ali Hill, Malkajgiri, Hyderabad, Telangana 500040",
+        "description": "A dome-shaped black granite monolith rising abruptly over northeastern Hyderabad. Reached by climbing approximately 484 stone steps, the hilltop offers one of the most stunning 360-degree sunset and sunrise panoramic viewpoints in the entire Deccan plateau.",
+        "short_desc": "360-degree panoramic sunset hill with 484 steps and an ancient hilltop shrine.",
+        "entry_fee_inr": 0,
+        "timings": "05:30 AM - 08:30 PM",
+        "open_time_24h": "05:30",
+        "close_time_24h": "20:30",
+        "avg_duration_minutes": 90,
+        "is_hidden_gem": True,
+        "rating": 4.6,
+        "reviews_count": 6200,
+        "tags": ["Hidden Gem", "Sunset View", "Trekking", "Photography", "Free"],
+        "audio_guide": {
+            "en": "You are ascending Moula Ali Hill, one of the geological wonders of Hyderabad. Built in the late 16th century during the reign of Ibrahim Qutb Shah, climbing these 484 carved steps rewards you with the most breathtaking sunset panorama across the twin cities. Feel the breezy Deccan winds as the city lights illuminate below.",
+            "te": "మౌలా అలీ కొండ వీక్షణ ప్రదేశానికి స్వాగతం. 16వ శతాబ్దంలో నిర్మించబడిన ఈ ప్రదేశానికి చేరుకోవడానికి 484 మెట్లు ఎక్కవలసి ఉంటుంది. సాయంత్రపు సూర్యాస్తమయ సమయాన ఇక్కడి నుండి నగర దృశ్యం అత్యంత శోభాయమానంగా కనిపిస్తుంది.",
+            "hi": "मौला अली पहाड़ी पर आपका स्वागत है। लगभग 484 सीढ़ियां चढ़कर इस पहाड़ी की चोटी पर पहुंचा जाता है, जहां से पूरे हैदराबाद और सिकंदराबाद शहर का 360 डिग्री विहंगम सूर्यास्त नजारा दिखाई देता है।"
+        },
+        "quick_facts": [
+            "Best visited during 5:00 PM to 6:30 PM for magnificent sunset photography.",
+            "484 easy-to-climb stone stairs suitable for all fitness levels.",
+            "Cool breeze and serene atmosphere away from city traffic."
+        ],
+        "image_url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "hyd-khajaguda-rocks",
+        "name": "Khajaguda Heritage Rock Formations",
+        "category": "attraction",
+        "sub_category": "hidden_gem",
+        "lat": 17.4194,
+        "lng": 78.3639,
+        "address": "Khajaguda Hills, Manikonda / Financial District, Hyderabad 500075",
+        "description": "Pre-historic natural granite rock formations estimated to be over 2.5 billion years old. A favorite sanctuary for bouldering enthusiasts, naturalists, and landscape photographers located right on the edge of the bustling Cyberabad IT corridor.",
+        "short_desc": "2.5-billion-year-old balancing rock boulders, natural caves, and serene lake views.",
+        "entry_fee_inr": 0,
+        "timings": "06:00 AM - 07:00 PM",
+        "open_time_24h": "06:00",
+        "close_time_24h": "19:00",
+        "avg_duration_minutes": 75,
+        "is_hidden_gem": True,
+        "rating": 4.5,
+        "reviews_count": 3900,
+        "tags": ["Hidden Gem", "Nature", "Rock Climbing", "Sunrise Spot", "Free"],
+        "audio_guide": {
+            "en": "Step into a primordial landscape dating back 2.5 billion years. The Khajaguda rocks are natural balancing megaliths sculpted over aeons by wind and water erosion. A hidden paradise right next to the Financial District, offering natural rock caves, tranquil lake views, and refreshing sunrise breezes.",
+            "te": "ఖజాగూడ సహజసిద్ధ రాతి నిర్మాణాలకు స్వాగతం. ఇవి సుమారు 2.5 బిలియన్ సంవత్సరాల పురాతనమైన సహజ గ్రానైట్ రాళ్ళు. ట్రెక్కింగ్, రాక్ క్లైంబింగ్ మరియు ప్రకృతి ప్రేమికులకు ఇది ఒక అద్భుతమైన దాగివున్న ప్రదేశం.",
+            "hi": "खजागुडा हेरिटेज रॉक्स में आपका स्वागत है। ये प्राकृतिक ग्रेनाइट चट्टानें 2.5 अरब साल से भी पुरानी हैं। हाइटेक सिटी के पास स्थित यह जगह रॉक क्लाइम्बिंग, ट्रैकिंग और सनराइज फोटोग्राफी के लिए अद्भुत है।"
+        },
+        "quick_facts": [
+            "2.5-billion-year-old natural geological formation.",
+            "Spectacular view of Khajaguda Lake and Financial District skyline.",
+            "Perfect sunrise spot with zero commercial crowd."
+        ],
+        "image_url": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "hyd-salar-jung",
+        "name": "Salar Jung Museum",
+        "category": "attraction",
+        "sub_category": "museum",
+        "lat": 17.3713,
+        "lng": 78.4804,
+        "address": "Darusshifa, Hyderabad, Telangana 500002",
+        "description": "One of the three National Museums of India and the largest one-man collection of antique artefacts in the world, amassed by Nawab Mir Yousuf Ali Khan (Salar Jung III). Highlights include the 19th-century British musical clock and the iconic double-sided marble statue of Mephistopheles and Margaretta.",
+        "short_desc": "World's largest one-man collection of rare global antiques, art, and the famous Musical Clock.",
+        "entry_fee_inr": 50,
+        "timings": "10:00 AM - 05:00 PM (Closed Fridays)",
+        "open_time_24h": "10:00",
+        "close_time_24h": "17:00",
+        "avg_duration_minutes": 180,
+        "is_hidden_gem": False,
+        "rating": 4.6,
+        "reviews_count": 72100,
+        "tags": ["Museum", "History", "Art", "Culture", "Family"],
+        "audio_guide": {
+            "en": "Welcome to the Salar Jung Museum, housing over 40,000 artefacts from across Asia, Europe, and North America. Do not miss the British Musical Clock in the central lobby, which chimes every hour with a mechanical figure emerging to strike the gong. Admire the Veiled Rebecca and the breathtaking double-sided wood sculpture of Mephistopheles and Margaretta.",
+            "te": "సాలార్ జంగ్ మ్యూజియంకు స్వాగతం. ప్రపంచంలోనే ఒకే వ్యక్తి సేకరించిన కళాఖండాల అతిపెద్ద ప్రదర్శనశాల ఇది. ప్రతి గంటకు ఒక బొమ్మ బయటకు వచ్చి గంట కొట్టే మ్యూజికల్ క్లాక్ మరియు ద్విముఖ శిల్పం మెఫిస్టోఫిలిస్ ఇక్కడ ప్రముఖ ఆకర్షణలు.",
+            "hi": "सालार जंग संग्रहालय में आपका स्वागत है। यह विश्व का सबसे बड़ा व्यक्तिगत संग्रह है जिसमें 40,000 से अधिक दुर्लभ कलाकृतियां हैं। ब्रिटिश म्यूजिकल क्लॉक और संगमरमर की मूर्ति 'वेल्ड रेबेका' यहां का मुख्य आकर्षण हैं।"
+        },
+        "quick_facts": [
+            "Over 40,000 historic objects across 38 dedicated galleries.",
+            "Famous 19th-century mechanical Musical Clock strikes on every hour.",
+            "Closed on Fridays - plan your visit accordingly."
+        ],
+        "image_url": "https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "hyd-chowmahalla",
+        "name": "Chowmahalla Palace",
+        "category": "attraction",
+        "sub_category": "palace",
+        "lat": 17.3578,
+        "lng": 78.4717,
+        "address": "Motigalli, Khilwat, Hyderabad, Telangana 500002",
+        "description": "The official seat of the Asaf Jahi dynasty and venue for grand ceremonial receptions of the Nizams. Built between 1750 and 1869, the palace features the Khilwat Mubarak (durbar hall) adorned with 19 magnificent pure Belgian crystal chandeliers, lush courtyards, and a vintage Rolls-Royce fleet.",
+        "short_desc": "Opulent Nizam palace featuring 19 Belgian chandeliers and vintage royal carriages.",
+        "entry_fee_inr": 100,
+        "timings": "10:00 AM - 05:00 PM (Closed Fridays)",
+        "open_time_24h": "10:00",
+        "close_time_24h": "17:00",
+        "avg_duration_minutes": 90,
+        "is_hidden_gem": False,
+        "rating": 4.6,
+        "reviews_count": 42000,
+        "tags": ["Heritage", "Palace", "Royal", "Photography"],
+        "audio_guide": {
+            "en": "Welcome to Chowmahalla Palace, meaning 'Four Palaces'. Here, the Nizams entertained dignitaries from across the globe. Stand in awe under the 19 Belgian crystal chandeliers in the grand Khilwat Durbar Hall. Inspect the 1912 yellow Rolls-Royce Silver Ghost in the royal motor courtyard.",
+            "te": "చౌమహల్లా ప్యాలెస్ కు స్వాగతం. 'నాలుగు మహళ్ళు' అని అర్థం వచ్చే ఈ రాజభవనం నిజాం నవాబుల అధికారిక నివాసం. దర్బార్ హాలులోని 19 బెల్జియం క్రిస్టల్ షాండ్లియర్లు మరియు రాయల్ మోటార్స్ గ్యాలరీలోని రోల్స్ రాయిస్ కారు ప్రత్యేక ఆకర్షణలు.",
+            "hi": "चौमहल्ला पैलेस में आपका स्वागत है। यह आसफ जाही निजामों का शाही दरबार था। दरबार हॉल में 19 बेल्जियन क्रिस्टल झूमर और विंटेज रोल्स रॉयस कार संग्रह पर्यटकों को मंत्रमुग्ध कर देते हैं।"
+        },
+        "quick_facts": [
+            "Recipient of the prestigious UNESCO Asia-Pacific Heritage Award.",
+            "Houses a pristine 1912 Rolls-Royce Silver Ghost.",
+            "Constructed over a century combining Persian, Indo-Saracenic, and European styles."
+        ],
+        "image_url": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "hyd-qutb-shahi-tombs",
+        "name": "Qutb Shahi Tombs",
+        "category": "attraction",
+        "sub_category": "monument",
+        "lat": 17.3941,
+        "lng": 78.3957,
+        "address": "Fort Road, Ibrahim Bagh, Hyderabad, Telangana 500008",
+        "description": "A magnificent necropolis housing the mausoleums of the seven Qutb Shahi rulers who ruled Golconda for 170 years. Set in landscaped Ibrahim Bagh gardens, the domes feature domed octagonal structures with ornate plaster carvings and arched terraces.",
+        "short_desc": "Royal necropolis of the Golconda sultans nestled in peaceful landscaped gardens.",
+        "entry_fee_inr": 20,
+        "timings": "09:30 AM - 05:30 PM",
+        "open_time_24h": "09:30",
+        "close_time_24h": "17:30",
+        "avg_duration_minutes": 90,
+        "is_hidden_gem": False,
+        "rating": 4.5,
+        "reviews_count": 31000,
+        "tags": ["Heritage", "Gardens", "Photography", "Tranquil"],
+        "audio_guide": {
+            "en": "Welcome to the royal necropolis of the Qutb Shahi kings. Unlike many dynasties whose rulers were buried in different capitals, almost all Qutb Shahi sultans rest together here in architectural harmony. The grandest mausoleum belongs to Muhammad Quli Qutb Shah, the founder of Hyderabad, rising to a height of 42 meters.",
+            "te": "కుతుబ్ షాహీ సమాధుల సముదాయానికి స్వాగతం. గోల్కొండను పాలించిన ఏడుగురు సుల్తానుల విశ్రాంతి స్థలమిది. హైదరాబాద్ వ్యవస్థాపకుడు ముహమ్మద్ కులీ కుతుబ్ షా సమాధి ఇక్కడ అత్యంత ఎత్తైనది మరియు వైభవమైనది.",
+            "hi": "कुतुब शाही मकबरों में आपका स्वागत है। गोलकोंडा के सात शासकों का यह शाही समाधि स्थल शांति और स्थापत्य कला का अद्भुत संगम है। हैदराबाद के संस्थापक मुहम्मद कुली कुतुब शाह का मकबरा सबसे भव्य है।"
+        },
+        "quick_facts": [
+            "One of the few royal dynasties buried in a single concentrated ensemble.",
+            "Underwent an extensive conservation project with Aga Khan Trust for Culture.",
+            "Just 1 km north of the Golconda Fort outer wall."
+        ],
+        "image_url": "https://images.unsplash.com/photo-1599831104328-b55526e47c0b?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "hyd-hussain-sagar",
+        "name": "Hussain Sagar & Buddha Statue",
+        "category": "attraction",
+        "sub_category": "lake",
+        "lat": 17.4239,
+        "lng": 78.4738,
+        "address": "Tank Bund Road / Necklace Road, Hyderabad, Telangana 500080",
+        "description": "A heart-shaped lake built in 1563 CE by Ibrahim Quli Qutb Shah connecting the twin cities of Hyderabad and Secunderabad. At the center of the lake stands the world's tallest monolithic granite statue of Gautama Buddha, standing 18 meters tall and weighing 450 tonnes.",
+        "short_desc": "Historic heart-shaped lake featuring the 18m monolithic Buddha statue and ferry rides.",
+        "entry_fee_inr": 0,
+        "timings": "06:00 AM - 10:00 PM",
+        "open_time_24h": "06:00",
+        "close_time_24h": "22:00",
+        "avg_duration_minutes": 60,
+        "is_hidden_gem": False,
+        "rating": 4.5,
+        "reviews_count": 81000,
+        "tags": ["Lake", "Boating", "Sunset Spot", "Family", "Evening"],
+        "audio_guide": {
+            "en": "You are at Hussain Sagar lake, constructed over 450 years ago. Board a ferry from Lumbini Park to Gibraltar Rock at the lake's center to witness the world's tallest monolithic statue of Lord Buddha, sculpted from a single slab of white granite by 200 artisans over five years.",
+            "te": "హుస్సేన్ సాగర్ సరస్సుకు స్వాగతం. 1563 లో నిర్మించబడిన ఈ సరస్సు మధ్యలో జిబ్రాల్టర్ రాతిపై 18 మీటర్ల ఏకశిలా బుద్ధ విగ్రహం కొలువై ఉంది. లంబినీ పార్క్ నుండి బోటింగ్ ద్వారా బుద్ధుని విగ్రహాన్ని చేరుకోవచ్చు.",
+            "hi": "हुसैन सागर झील में आपका स्वागत है। 1563 में बनी इस हृदय-आकार झील के केंद्र में 18 मीटर ऊंची भगवान बुद्ध की विश्व की सबसे ऊंची एकाश्म (सिंगल ग्रेनाइट) प्रतिमा स्थित है।"
+        },
+        "quick_facts": [
+            "Ferry boat ride costs only ₹55 per person from Lumbini Park.",
+            "Illuminated beautifully with color-changing LEDs in the evening.",
+            "Surrounded by Tank Bund, Necklace Road, and lush public parks."
+        ],
+        "image_url": "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "hyd-birla-mandir",
+        "name": "Birla Mandir",
+        "category": "attraction",
+        "sub_category": "temple",
+        "lat": 17.4062,
+        "lng": 78.4691,
+        "address": "Hill Fort Road, Ambedkar Colony, Khairtabad, Hyderabad 500004",
+        "description": "Perched atop the 280-foot Naubat Pahad hill, this temple is crafted entirely from 2,000 tonnes of pristine pure white Rajasthani marble. Dedicated to Lord Venkateswara, it blends Utkal (Odia) and South Indian architectural styles with serene vistas over Hussain Sagar.",
+        "short_desc": "Gleaming pure white marble temple atop a 280-ft hill offering sweeping lake views.",
+        "entry_fee_inr": 0,
+        "timings": "07:00 AM - 12:00 PM, 03:00 PM - 09:00 PM",
+        "open_time_24h": "07:00",
+        "close_time_24h": "21:00",
+        "avg_duration_minutes": 60,
+        "is_hidden_gem": False,
+        "rating": 4.7,
+        "reviews_count": 68000,
+        "tags": ["Spiritual", "Architecture", "Panoramic View", "Peaceful", "Free"],
+        "audio_guide": {
+            "en": "Welcome to Birla Mandir atop Naubat Pahad hill. Consecrated in 1976, this architectural sanctuary was constructed using 2,000 tonnes of flawless white marble transported from Makrana, Rajasthan. Enjoy the serene breeze, devotional chants, and the breathtaking panoramic view of the lake below.",
+            "te": "నౌబత్ పహాడ్ గుట్టపై కొలువైన బిర్లా మందిర్ కు స్వాగతం. రాజస్థాన్ లోని మక్రానా నుండి తెప్పించిన 2,000 టన్నుల స్వచ్ఛమైన తెల్లటి పాలరాయితో ఈ దేవాలయాన్ని నిర్మించారు. ఇక్కడి నుండి హుస్సేన్ సాగర్ మరియు నగర సౌందర్యం కనువిందు చేస్తుంది.",
+            "hi": "नौबत पहाड़ पर स्थित बिरला मंदिर में आपका स्वागत है। मकराना के 2,000 टन सफेद संगमरमर से बना यह भव्य मंदिर भगवान वेंकटेश्वर को समर्पित है, जहां से शहर का मनमोहक दृश्य दिखाई देता है।"
+        },
+        "quick_facts": [
+            "Free admission; mobile phones and cameras must be deposited at the free counter.",
+            "Spectacular illumination after dusk.",
+            "Features no bells to maintain an atmosphere of meditative silence."
+        ],
+        "image_url": "https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "hyd-spanish-mosque",
+        "name": "Spanish Mosque (Masjid Iqbal Ud Daula)",
+        "category": "attraction",
+        "sub_category": "hidden_gem",
+        "lat": 17.4428,
+        "lng": 78.4722,
+        "address": "Paigah Palace, Begumpet, Hyderabad, Telangana 500016",
+        "description": "Constructed in 1906 by Sir Nawab Viqar-ul-Umra after his travels through Spain, this architectural anomaly is built in Moorish-Hispanic architectural style, reminiscent of the famous Cathedral-Mosque of Córdoba with pointed arches, spiral steeples, and European calligraphy.",
+        "short_desc": "Unique Moorish-Spanish architectural mosque built in 1906 with European steeples.",
+        "entry_fee_inr": 0,
+        "timings": "05:00 AM - 09:00 PM",
+        "open_time_24h": "05:00",
+        "close_time_24h": "21:00",
+        "avg_duration_minutes": 45,
+        "is_hidden_gem": True,
+        "rating": 4.6,
+        "reviews_count": 3200,
+        "tags": ["Hidden Gem", "Architecture", "Heritage", "Unique", "Free"],
+        "audio_guide": {
+            "en": "Welcome to the Spanish Mosque in Begumpet, one of the most distinctive mosques in South Asia. Notice the pointed spires replacing customary domes and minarets—inspired directly by the Moorish architecture of Córdoba, Spain. It stands as a testament to the eclectic tastes of the Paigah nobility.",
+            "te": "బేగంపేట్ లోని స్పానిష్ మసీదుకు స్వాగతం. యూరోపియన్ మరియు మూరిష్ శైలిలో నిర్మించబడిన అరుదైన కట్టడమిది. సాధారణ మసీదుల వలె కాకుండా స్పెయిన్ దేశపు కోర్డోబా శైలి గోపురాలు ఇక్కడ దర్శనమిస్తాయి.",
+            "hi": "स्पेनिश मस्जिद बेगमपेट में आपका स्वागत है। 1906 में बनी यह अनोखी मस्जिद मूरिश-स्पैनिश वास्तुकला पर आधारित है, जो स्पेन के कॉर्डोबा शहर के ऐतिहासिक स्मारकों से प्रेरित है।"
+        },
+        "quick_facts": [
+            "Only mosque in India with distinct Moorish-Spanish architecture.",
+            "Commissioned by the Paigah Nawab after his European tour.",
+            "Serene garden courtyard with delicate Quranic calligraphy."
+        ],
+        "image_url": "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "hyd-shadab",
+        "name": "Hotel Shadab",
+        "category": "food",
+        "sub_category": "biryani",
+        "lat": 17.3683,
+        "lng": 78.4764,
+        "address": "High Court Road, Madina Circle, Charminar, Hyderabad 500002",
+        "description": "An authentic culinary institution near Charminar world-famous for its traditional Dum Biryani, Mutton Haleem, Boti Kebab, and Zafrani Chai. A favorite of locals and culinary travelers for over seven decades.",
+        "short_desc": "Legendary culinary institution famed for authentic Hyderabadi Dum Biryani and Haleem.",
+        "entry_fee_inr": 0,
+        "timings": "06:00 AM - 02:00 AM",
+        "open_time_24h": "06:00",
+        "close_time_24h": "02:00",
+        "avg_duration_minutes": 60,
+        "is_hidden_gem": False,
+        "rating": 4.4,
+        "reviews_count": 52000,
+        "tags": ["Food", "Biryani", "Authentic", "Late Night", "Non-Veg"],
+        "audio_guide": {
+            "en": "Welcome to Hotel Shadab, a true temple of Hyderabadi gastronomy. Watch how the chefs prepare the authentic Kacchi Dum Biryani: marinated meat and fragrant basmati rice sealed with dough in a copper handi and slow-cooked over coal embers.",
+            "te": "హోటల్ షాదాబ్ కు స్వాగతం. చార్మినార్ సమీపంలో ఉన్న ఈ ప్రసిద్ధ హోటల్ ఘుమఘుమలాడే హైదరాబాదీ దమ్ బిర్యానీ, హలీమ్ మరియు ఇరానీ చాయ్ కి ప్రపంచ ప్రసిద్ధి చెందింది.",
+            "hi": "होटल शादाब में आपका स्वागत है। चारमीनार के पास स्थित यह प्रतिष्ठित रेस्तरां अपनी प्रामाणिक हैदराबादी दम बिरयानी, मटन हलीम और ईरानी चाय के लिए जाना जाता है।"
+        },
+        "quick_facts": [
+            "Mutton Dum Biryani and Chicken 65 are signature items.",
+            "Price per person: approx ₹250 - ₹400.",
+            "Open until 2:00 AM for late-night foodies."
+        ],
+        "image_url": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "hyd-niloufer",
+        "name": "Cafe Niloufer",
+        "category": "food",
+        "sub_category": "iranian_tea",
+        "lat": 17.4008,
+        "lng": 78.4611,
+        "address": "V.P. Road, Old Mallepally, Lakdikapul, Hyderabad 500004",
+        "description": "Established in 1978 by Shri A. Babu Rao, Cafe Niloufer revolutionized Hyderabad's Irani chai culture. Served piping hot with crispy Osmania biscuits, maska bun, and fine bakery delicacies.",
+        "short_desc": "The benchmark for Hyderabad's creamy Irani Chai and melt-in-mouth Osmania biscuits.",
+        "entry_fee_inr": 0,
+        "timings": "04:30 AM - 12:30 AM",
+        "open_time_24h": "04:30",
+        "close_time_24h": "00:30",
+        "avg_duration_minutes": 30,
+        "is_hidden_gem": False,
+        "rating": 4.6,
+        "reviews_count": 38000,
+        "tags": ["Food", "Irani Chai", "Bakery", "Breakfast", "Budget"],
+        "audio_guide": {
+            "en": "Welcome to Cafe Niloufer, the quintessential soul of Hyderabad's tea culture. Niloufer's Irani Chai is slow-brewed using reduced milk simmered for hours, creating a velvety, caramel-rich concoction. Dip their fresh Osmania biscuit into your cup for an authentic local ritual.",
+            "te": "కేఫ్ నిలోఫర్ కు స్వాగతం. హైదరాబాద్ ఇరానీ చాయ్ సంస్కృతికి ఇది నిదర్శనం. చిక్కటి పాలతో మరిగించిన ఇరానీ చాయ్ మరియు తాజా ఉస్మానియా బిస్కెట్లు ఇక్కడి ప్రధాన ప్రత్యేకత.",
+            "hi": "कैफे नीलोफर में आपका स्वागत है। 1978 से यह कैफे अपनी मलाईदार ईरानी चाय और मुंह में घुल जाने वाले उस्मानिया बिस्कुट के लिए पूरे भारत में मशहूर है।"
+        },
+        "quick_facts": [
+            "Signature special Irani tea costs just ₹30 - ₹50.",
+            "Maska bun and fresh Osmania biscuits made on-site daily.",
+            "Opens at 4:30 AM for morning walkers."
+        ],
+        "image_url": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "hyd-nimrah",
+        "name": "Nimrah Cafe and Bakery",
+        "category": "food",
+        "sub_category": "iranian_tea",
+        "lat": 17.3622,
+        "lng": 78.4744,
+        "address": "Opposite Charminar, Beside Mecca Masjid, Hyderabad 500002",
+        "description": "Located directly facing the monumental arches of Charminar, Nimrah Cafe has been brewing tea since 1993. Savoring their piping hot Irani Chai while gazing at Charminar is an iconic Hyderabad bucket-list experience.",
+        "short_desc": "Iconic tea stall directly facing Charminar serving hot Irani chai and fresh biscuits.",
+        "entry_fee_inr": 0,
+        "timings": "04:00 AM - 11:30 PM",
+        "open_time_24h": "04:00",
+        "close_time_24h": "23:30",
+        "avg_duration_minutes": 30,
+        "is_hidden_gem": False,
+        "rating": 4.5,
+        "reviews_count": 41000,
+        "tags": ["Food", "Irani Chai", "Charminar View", "Budget", "Must Visit"],
+        "audio_guide": {
+            "en": "Take a seat at Nimrah Cafe right in front of Charminar. Listen to the gentle clatter of porcelain cups and inhale the scent of fresh baked biscuits. Order a 'Double Meetha' or 'Khara' biscuit with your cup of chai.",
+            "te": "నిమ్రా కేఫ్ కు స్వాగతం. చార్మినార్ కు సరిగ్గా ఎదురుగా కూర్చొని వేడి వేడి ఇరానీ చాయ్ తాగుతూ చారిత్రక కట్టడాన్ని వీక్షించడం ఒక మరపురాని అనుభూతి.",
+            "hi": "निम्राह कैफे में आपका स्वागत है। चारमीनार के ठीक सामने स्थित यह कैफे गर्म ईरानी चाय और ताजे बेकरी बिस्कुट के लिए एक अनिवार्य पड़ाव है।"
+        },
+        "quick_facts": [
+            "Best outdoor view of Charminar for morning tea lovers.",
+            "Try the Tie Biscuit, Fine Biscuit, and Chand Biscuit.",
+            "Affordable treat: Tea & 2 biscuits for under ₹50."
+        ],
+        "image_url": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "id": "hyd-hospital-osmania",
+        "name": "Osmania General Hospital (Emergency)",
+        "category": "hospital",
+        "sub_category": "emergency_medical",
+        "lat": 17.3775,
+        "lng": 78.4786,
+        "address": "Afzal Gunj, Hyderabad, Telangana 500012",
+        "description": "Premier government hospital equipped with a 24x7 trauma care center, emergency casualty ward, and ambulance bays. Centrally located near the Old City.",
+        "short_desc": "24x7 major emergency government hospital and trauma care center.",
+        "entry_fee_inr": 0,
+        "timings": "Open 24 Hours",
+        "open_time_24h": "00:00",
+        "close_time_24h": "23:59",
+        "avg_duration_minutes": 30,
+        "is_hidden_gem": False,
+        "rating": 4.1,
+        "reviews_count": 6500,
+        "tags": ["Hospital", "Emergency", "24x7", "Trauma Care"],
+        "phone": "+91-40-24600121",
+        "emergency_number": "108",
+        "quick_facts": [
+            "24x7 round-the-clock emergency casualty service.",
+            "Located 1.5 km north of Charminar.",
+            "Equipped for critical trauma management."
+        ]
+    },
+    {
+        "id": "hyd-hospital-apollo",
+        "name": "Apollo Hospitals Jubilee Hills",
+        "category": "hospital",
+        "sub_category": "emergency_medical",
+        "lat": 17.4267,
+        "lng": 78.4117,
+        "address": "Road No. 72, Opposite Bharatiya Vidya Bhavan, Film Nagar, Hyderabad 500033",
+        "description": "Internationally accredited multi-specialty tertiary care hospital with 24x7 emergency resuscitation, advanced cardiac care, and ambulance dispatch.",
+        "short_desc": "Top-tier 24x7 multi-specialty emergency hospital in western Hyderabad.",
+        "entry_fee_inr": 0,
+        "timings": "Open 24 Hours",
+        "open_time_24h": "00:00",
+        "close_time_24h": "23:59",
+        "avg_duration_minutes": 30,
+        "is_hidden_gem": False,
+        "rating": 4.4,
+        "reviews_count": 14200,
+        "tags": ["Hospital", "Emergency", "24x7", "Multi-Specialty"],
+        "phone": "+91-40-23607777",
+        "emergency_number": "1066",
+        "quick_facts": [
+            "24x7 Emergency helpline: 1066.",
+            "Comprehensive trauma and cardiac emergency facilities.",
+            "Located convenient to Banjara Hills and Hitec City."
+        ]
+    },
+    {
+        "id": "hyd-police-charminar",
+        "name": "Charminar Police Station",
+        "category": "police",
+        "sub_category": "police_station",
+        "lat": 17.3629,
+        "lng": 78.4735,
+        "address": "Charminar South, Ghansi Bazaar, Hyderabad 500002",
+        "description": "Local law enforcement police station with a dedicated Tourist Assistance Desk, women safety cell, and round-the-clock patrol units.",
+        "short_desc": "24x7 police station with Tourist Assistance Desk right at Charminar.",
+        "entry_fee_inr": 0,
+        "timings": "Open 24 Hours",
+        "open_time_24h": "00:00",
+        "close_time_24h": "23:59",
+        "avg_duration_minutes": 15,
+        "is_hidden_gem": False,
+        "rating": 4.3,
+        "reviews_count": 1200,
+        "tags": ["Police", "Emergency", "Tourist Desk", "Safety"],
+        "phone": "+91-40-27854774",
+        "emergency_number": "100",
+        "quick_facts": [
+            "Direct emergency number: 100 or 112.",
+            "Walkable distance of 150m from Charminar monument.",
+            "English, Telugu, and Urdu-speaking officers on duty."
+        ]
+    },
+    {
+        "id": "hyd-police-cyberabad",
+        "name": "Cyberabad Police Commissionerate",
+        "category": "police",
+        "sub_category": "police_station",
+        "lat": 17.4375,
+        "lng": 78.3667,
+        "address": "Gachibowli Main Road, Jayabheri Pine Valley, Gachibowli, Hyderabad 500032",
+        "description": "Modern police headquarters serving the Cyberabad IT corridor. Equipped with SHE Teams women safety wing, tourist assistance, and 24x7 emergency response vehicles.",
+        "short_desc": "Cyberabad Police Headquarters with specialized SHE Teams and tourist safety.",
+        "entry_fee_inr": 0,
+        "timings": "Open 24 Hours",
+        "open_time_24h": "00:00",
+        "close_time_24h": "23:59",
+        "avg_duration_minutes": 15,
+        "is_hidden_gem": False,
+        "rating": 4.5,
+        "reviews_count": 2100,
+        "tags": ["Police", "Emergency", "SHE Teams", "Safety"],
+        "phone": "+91-40-27853400",
+        "emergency_number": "100",
+        "quick_facts": [
+            "SHE Teams helpline for women tourists: +91-9490617444.",
+            "Rapid response interceptor vehicles.",
+            "Modern cyber and physical safety control room."
+        ]
+    },
+    {
+        "id": "hyd-atm-charminar",
+        "name": "State Bank of India (SBI) ATM - Charminar",
+        "category": "atm",
+        "sub_category": "atm_cash",
+        "lat": 17.3625,
+        "lng": 78.4739,
+        "address": "Near Laad Bazaar Gate, Charminar, Hyderabad 500002",
+        "description": "24x7 ATM counter accepting Visa, MasterCard, RuPay, and International debit cards.",
+        "short_desc": "24x7 international debit/credit card cash dispenser near Charminar.",
+        "entry_fee_inr": 0,
+        "timings": "Open 24 Hours",
+        "open_time_24h": "00:00",
+        "close_time_24h": "23:59",
+        "avg_duration_minutes": 5,
+        "is_hidden_gem": False,
+        "rating": 4.2,
+        "reviews_count": 450,
+        "tags": ["ATM", "Cash", "Finance", "24x7"],
+        "quick_facts": [
+            "Supports international Visa and MasterCard cash withdrawals.",
+            "Guard on duty 24x7."
+        ]
+    },
+    {
+        "id": "hyd-restroom-metro",
+        "name": "MGBS Metro Station Clean Restrooms & Transit",
+        "category": "restroom",
+        "sub_category": "public_facility",
+        "lat": 17.3789,
+        "lng": 78.4831,
+        "address": "Mahatma Gandhi Bus Station Interchange, Gowliguda, Hyderabad 500095",
+        "description": "Air-conditioned, modern, accessible clean public restrooms, drinking water booths, luggage cloakroom, and major metro interchange connecting Green and Red lines.",
+        "short_desc": "Clean sanitized restrooms, drinking water, and major metro transport hub.",
+        "entry_fee_inr": 5,
+        "timings": "06:00 AM - 11:00 PM",
+        "open_time_24h": "06:00",
+        "close_time_24h": "23:00",
+        "avg_duration_minutes": 10,
+        "is_hidden_gem": False,
+        "rating": 4.5,
+        "reviews_count": 890,
+        "tags": ["Restroom", "Transit", "Clean", "Metro", "Accessible"],
+        "quick_facts": [
+            "Disabled-friendly wheelchair access.",
+            "Cleaned continuously every hour.",
+            "Baggage cloakroom facility available."
+        ]
+    }
+]
+
+EMERGENCY_CONTACTS = {
+    "police": "100",
+    "national_emergency": "112",
+    "ambulance": "108",
+    "women_helpline": "1091",
+    "tourist_helpline": "1363",
+    "hyderabad_she_teams": "+91-9490617444",
+    "traffic_police_whatsapp": "+91-9010203626"
+}
