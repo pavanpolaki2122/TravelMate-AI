@@ -6,11 +6,16 @@ from app.data.hyderabad_data import HYDERABAD_PLACES
 try:
     from dotenv import load_dotenv as _load_dotenv
     import pathlib as _pathlib
-    _env_path = _pathlib.Path(__file__).resolve().parents[3] / "backend" / ".env"
-    if not _env_path.exists():
-        # Try relative to backend root
-        _env_path = _pathlib.Path(__file__).resolve().parents[2] / ".env"
-    _load_dotenv(_env_path, override=False)
+    # Try multiple possible .env locations (local dev & cloud)
+    for _candidate in [
+        _pathlib.Path(__file__).resolve().parents[3] / "backend" / ".env",
+        _pathlib.Path(__file__).resolve().parents[2] / ".env",
+        _pathlib.Path.cwd() / "backend" / ".env",
+        _pathlib.Path.cwd() / ".env",
+    ]:
+        if _candidate.exists():
+            _load_dotenv(_candidate, override=False)
+            break
 except Exception:
     pass
 
